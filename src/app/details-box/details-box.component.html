@@ -1,0 +1,27 @@
+<app-search-box (searchedData)="onSearchedData($event)"></app-search-box>
+
+<section class="text-gray-800 border-4">
+
+    <div *ngFor="let t of tasklist">
+
+        <div *ngIf="searchedItem.toLowerCase()===t.title.toLowerCase() || searchedItem==='' " class="container px-5 py-24 mx-auto ">
+            <div class="flex flex-wrap -m-4 flex-col border-4 ">
+                <div class="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden border-4 ">
+                    <h1 class=" title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">{{t.title }}
+                    </h1>
+                    
+                    <ol *ngFor="let task of t.tasks; let i = index" [hidden]="hide" class="leading-relaxed mb-3">
+
+                        <li class="inline">{{task}}</li>
+                        <button (click)="onButtonClick(i,t)" style="position:absolute; color: blue; right:10%;"
+                            class="border-2" onmouseout="this.style.color='blue';"
+                            onmouseover="this.style.color='red'">X</button>
+
+
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
